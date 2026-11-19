@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IS117 A10 - Cookies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: white;
+        }
+
+        h1 {
+            color: navy;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        footer {
+            margin-top: 40px;
+            border-top: 1px solid gray;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>IS117 Assignment A10</h1>
+    <p>Intro to Website Development - Section 003</p>
+    <h2>JavaScript Cookies</h2>
+    <p>Enter your name and click the button to save a cookie.</p>
+    <p>Then refresh the page to see the saved cookie.</p>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name">
+    <button onclick="saveCookie()">Save Cookie</button>
+
+    <p id="result">No cookie has been displayed yet.</p>
+
+    <footer>
+        &copy; 2026 Marco Aziz | Due Date: November 17, 2026
+    </footer>
+
+    <script>
+        // Save a cookie when the user clicks the button.
+        function saveCookie() {
+            var name = document.getElementById("name").value;
+
+            if (name == "") {
+                document.getElementById("result").textContent = "Please enter your name.";
+            } else {
+                document.cookie = "A10Name=" + encodeURIComponent(name) + "; max-age=604800; path=/";
+                document.getElementById("result").textContent = "Cookie saved! Refresh the page to see it.";
+            }
+        }
+
+        // Show the cookie when the page loads or reloads.
+        function showCookie() {
+            if (document.cookie == "") {
+                document.getElementById("result").textContent = "No cookie found. Enter your name above.";
+            } else {
+                document.getElementById("result").textContent = "Saved cookie: " + document.cookie;
+            }
+        }
+
+        window.onload = showCookie;
+    </script>
+</body>
+</html>
